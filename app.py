@@ -1,16 +1,30 @@
-from flask import Flask
+from flask import Flask, render_template, request
+import requests
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+@app.route("/", methods=["GET", "POST"])
+def predict_from_api():
+
+    if request.method == "POST":
+        body = {
+            "sepal_width": None,
+            "sepal_length": None,
+            "petal_length": None,
+            "petal_width": None,
+        }
+
+        body["sepal_width"] = float(request.form["sepal_width"])
+        body["sepal_length"] = float(request.form["sepal_length"])
+        body["petal_length"] = float(request.form["petal_length"])
+        body["petal_width"] = float(request.form["petal_width"])
+
+        response = requests.post("http://127.0.0.1:5000/predict", json=body)
+
+        return response.json()
+
+    return render_template("index.html")
 
 
-@app.route("/predict")
-def predict():
-    return "This is where the prediction would go"
-
-
-app.run(debug=True)
+app.run(port=5001, debug=True)
