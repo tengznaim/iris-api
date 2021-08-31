@@ -5,31 +5,124 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iris App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/index.css') }}"
+    />
   </head>
   <body>
-    <h1>Iris Species Classification</h1>
-    <form method="POST">
-      <input
-        type="text"
-        name="sepal_width"
-        placeholder="Enter the sepal width"
-      />
-      <input
-        type="text"
-        name="sepal_length"
-        placeholder="Enter the sepal length"
-      />
-      <input
-        type="text"
-        name="petal_length"
-        placeholder="Enter the petal length"
-      />
-      <input
-        type="text"
-        name="petal_width"
-        placeholder="Enter the petal width"
-      />
-      <input type="submit" value="Submit" />
-    </form>
+    <div class="index-container">
+      <div class="left-container">
+        <div class="left-content">
+          <h1 id="title-text">Iris Species Classification</h1>
+          <h2 class="subheaders" id="input-header">Input</h2>
+          <form method="POST">
+            <div class="range-item">
+              <!-- Note that the for attribute refers to the ID while the name is used in Flask for the form -->
+              <label for="sepal_width" id="range-label">Sepal Width (cm)</label>
+              <input
+                type="range"
+                name="sepal_width"
+                id="sepal_width"
+                min="0"
+                max="10"
+                step="0.1"
+                value="0"
+                oninput="sepal_width_value.value = sepal_width.value"
+              />
+              <output
+                class="slider-text"
+                id="sepal_width_value"
+                for="sepal_width"
+                >0.0</output
+              >
+            </div>
+            <div class="range-item">
+              <label for="sepal_length" id="range-label"
+                >Sepal Length (cm)</label
+              >
+              <input
+                type="range"
+                name="sepal_length"
+                id="sepal_length"
+                min="0"
+                max="10"
+                step="0.1"
+                value="0"
+                oninput="sepal_length_value.value = sepal_length.value"
+              />
+              <output
+                class="slider-text"
+                id="sepal_length_value"
+                for="sepal_length"
+                >0.0</output
+              >
+            </div>
+            <div class="range-item">
+              <label for="petal_length" id="range-label"
+                >Petal Length (cm)</label
+              >
+              <input
+                type="range"
+                name="petal_length"
+                id="petal_length"
+                min="0"
+                max="10"
+                step="0.1"
+                value="0"
+                oninput="petal_length_value.value = petal_length.value"
+              />
+              <output
+                class="slider-text"
+                id="petal_length_value"
+                for="petal_length"
+                >0.0</output
+              >
+            </div>
+            <div class="range-item">
+              <label for="petal_width" id="range-label">Petal Width (cm)</label>
+              <input
+                type="range"
+                name="petal_width"
+                id="petal_width"
+                min="0"
+                max="10"
+                step="0.1"
+                value="0"
+                oninput="petal_width_value.value = petal_width.value"
+              />
+              <output
+                class="slider-text"
+                id="petal_width_value"
+                for="petal_width"
+                >0.0</output
+              >
+            </div>
+            <input type="submit" value="Predict Species" id="predict-button" />
+          </form>
+        </div>
+      </div>
+      <div class="right-container">
+        <img
+          src="{{ url_for('static', filename='assets/iris-bg.jpg') }}"
+          alt="Iris Image"
+          id="index-image"
+        />
+      </div>
+      <footer class="index-footer">
+        <p>
+          Made with &#128156; by
+          <a href="https://www.github.com/tengznaim" target="_blank"
+            >Tengku Naim</a
+          >
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

@@ -22,7 +22,7 @@ def predict_from_api():
 
         response = requests.post("http://127.0.0.1:5000/predict", json=body)
 
-        return response.json()
+        return render_template("index.html", prediction=response.json())
 
     return render_template("index.html")
 
