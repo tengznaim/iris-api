@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 
 app = Flask(__name__)
+model = pickle.load(open("iris_logistic_regression.pkl", "rb"))
 
 
 @app.route("/")
@@ -24,9 +25,9 @@ def predict():
 
     probabilities = model.predict_proba(values)[0]
     prediction = labels[probabilities.argmax()]
+    confidence = round(probabilities.max()*100, 2)
 
-    return jsonify({'prediction': prediction, "confidence": probabilities.max()})
+    return jsonify({'prediction': prediction, "confidence": confidence})
 
 
-model = pickle.load(open("iris_logistic_regression.pkl", "rb"))
 app.run(debug=True)

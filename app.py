@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import requests
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ def predict_from_api():
 
         response = requests.post("http://127.0.0.1:5000/predict", json=body)
 
-        return render_template("index.html", prediction=response.json())
+        return render_template("predict.html", prediction=response.json())
 
     return render_template("index.html")
 

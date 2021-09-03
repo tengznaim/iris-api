@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iris App - Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/predict.css') }}"
+    />
+  </head>
+  <body>
+    <div class="predict-container">
+      <div class="left-container">
+        <div class="left-content">
+          <h1 id="title-text">Iris Species Classification</h1>
+          <h2 id="prediction-header">Prediction</h2>
+          <p id="prediction">{{prediction["prediction"]}}</h2>
+          <p id="confidence">Confidence: {{prediction["confidence"]}}%</p>
+          <a href="/"><button id="home-button">Make Another Prediction</button></a>
+        </div>
+      </div>
+      <div class="right-container">
+        <img
+          src="{{ url_for('static', filename='assets/iris-bg.jpg') }}"
+          alt="Iris Image"
+          id="predict-image"
+        />
+      </div>
+      <footer class="predict-footer">
+        <p>
+          Made with &#128156; by
+          <a href="https://www.github.com/tengznaim" target="_blank"
+            >Tengku Naim</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
